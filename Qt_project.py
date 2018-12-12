@@ -71,7 +71,17 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.color = QColor(color.name())
 
     def save_image(self):
-        pass
+        i, okBtnPressed = QInputDialog.getText(
+            self, "Введите имя файла", "Формат - .jpg?"
+        )
+        if len(i) > 4 and i[-4:] == '.jpg':
+            screen = QApplication.primaryScreen()
+            screenshot = screen.grabWindow(self.winId())
+            screenshot.save(i, 'jpg')
+            img = Image.open(i)
+            area = (0, 80, 900, 700)
+            cropped_img = img.crop(area)
+            cropped_img.save(i)
 
     def mouseMoveEvent(self, event):
         x = event.x()
