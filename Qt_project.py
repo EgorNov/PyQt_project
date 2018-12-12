@@ -41,7 +41,30 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.yellow_c.clicked.connect(self.run)
         self.collor_settings.clicked.connect(self.run1)
 
-   
+    def run(self):
+        color = self.sender().styleSheet()[22:-1].split(sep=', ')
+        self.color = QColor(int(color[0]), int(color[1]), int(color[2]))
+        self.left_color.setStyleSheet(self.sender().styleSheet())
+
+    def clean_im(self):
+        pass
+
+    def run1(self):
+        color = QColorDialog.getColor()
+        if color.isValid():
+            self.left_color.setStyleSheet(
+                "background-color: {}".format(color.name())
+            )
+        self.color = QColor(color.name())
+
+    def save_image(self):
+        pass
+
+    def mouseMoveEvent(self, event):
+        pass
+
+    def mousePressEvent(self, event):
+        pass
 
 
 app = QApplication(sys.argv)
