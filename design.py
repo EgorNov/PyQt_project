@@ -8,14 +8,16 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(931, 719)
+        MainWindow.setFixedSize(900, 700)
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(0, 0, 921, 81))
+        self.groupBox.setGeometry(QtCore.QRect(0, 0, 900, 80))
         self.groupBox.setObjectName("groupBox")
         self.gridLayoutWidget = QtWidgets.QWidget(self.groupBox)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(50, -1, 31, 81))
@@ -68,12 +70,25 @@ class Ui_MainWindow(object):
         self.collor_settings = QtWidgets.QPushButton(self.groupBox)
         self.collor_settings.setGeometry(QtCore.QRect(280, 20, 101, 41))
         self.collor_settings.setObjectName("collor_settings")
+        self.clean = QtWidgets.QPushButton(self.groupBox)
+        self.clean.setGeometry(QtCore.QRect(480, 20, 100, 41))
+        self.clean.setObjectName("clean_button")
+        self.grab_btn = QtWidgets.QPushButton(self.groupBox)
+        self.grab_btn.setGeometry(QtCore.QRect(600, 20, 100, 41))
+        self.grab_btn.setObjectName("screen_button")
+        self.line = QtWidgets.QLabel(self.groupBox)
+        self.line.setObjectName("screen_button")
+        self.line.setGeometry(QtCore.QRect(740, 20, 100, 41))
+        self.brash = QtWidgets.QComboBox(self.groupBox)
+        self.brash.setGeometry(QtCore.QRect(780, 20, 40, 41))
+        self.brash.setObjectName("brash_button")
+        self.brash.addItems(["3", "6", "8", "10", "12", "14", "16", "18", "20", "22", "25"])
         self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(10, 90, 800, 600))
+        self.widget.setGeometry(QtCore.QRect(0, 80, 900, 700))
         self.widget.setObjectName("widget")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 931, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 900, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -85,7 +100,11 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Shmaint"))
         self.groupBox.setTitle(_translate("MainWindow", "Colors"))
         self.collor_settings.setText(_translate("MainWindow", "Настроить цвет"))
+        self.clean.setText(_translate("MainWindow", "Очистить"))
+        self.grab_btn.setText(_translate("MainWindow", "Сохранить"))
+        self.line.setText(_translate("MainWindow", "Кисть"))
+
 
