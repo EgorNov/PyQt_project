@@ -41,6 +41,8 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.yellow_c.clicked.connect(self.run)
         self.collor_settings.clicked.connect(self.run1)
 
+    def onActivated(self, text):
+        self.my_brash = int(text)
 
     def paintEvent(self, event):
         qp = QPainter()
@@ -60,7 +62,8 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.left_color.setStyleSheet(self.sender().styleSheet())
 
     def clean_im(self):
-        pass
+        self.coords = []
+        self.update()
 
     def run1(self):
         color = QColorDialog.getColor()
@@ -88,14 +91,14 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         y = event.y()
         if y > 80:
             self.coords.append((x, y, self.color, self.my_brash))
-        ex.update()
+        self.update()
 
     def mousePressEvent(self, event):
         x = event.x()
         y = event.y()
         if y > 80:
             self.coords.append((x, y, self.color, self.my_brash))
-        ex.update()
+        self.update()
 
 
 app = QApplication(sys.argv)
