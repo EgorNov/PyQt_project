@@ -41,6 +41,19 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.yellow_c.clicked.connect(self.run)
         self.collor_settings.clicked.connect(self.run1)
 
+
+    def paintEvent(self, event):
+        qp = QPainter()
+        qp.begin(self)
+        self.draw(qp)
+        qp.end()
+
+    def draw(self, qp):
+        for point in self.coords:
+            qp.setBrush(point[2])
+            qp.setPen(QPen(Qt.NoPen))
+            qp.drawRect(point[0], point[1], point[3], point[3])
+
     def run(self):
         color = self.sender().styleSheet()[22:-1].split(sep=', ')
         self.color = QColor(int(color[0]), int(color[1]), int(color[2]))
@@ -61,10 +74,18 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         pass
 
     def mouseMoveEvent(self, event):
-        pass
+        x = event.x()
+        y = event.y()
+        if y > 80:
+            self.coords.append((x, y, self.color, self.my_brash))
+        ex.update()
 
     def mousePressEvent(self, event):
-        pass
+        x = event.x()
+        y = event.y()
+        if y > 80:
+            self.coords.append((x, y, self.color, self.my_brash))
+        ex.update()
 
 
 app = QApplication(sys.argv)
