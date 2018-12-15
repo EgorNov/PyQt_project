@@ -6,7 +6,7 @@ from PyQt5.QtGui import QScreen
 import PyQt5.QtGui as QtGui
 from PyQt5.QtWidgets import QPushButton, QColorDialog, QInputDialog
 from design import Ui_MainWindow
-# from Pillow import Image
+from PIL import Image
 
 
 class MyWidget(QMainWindow, Ui_MainWindow):
