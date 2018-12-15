@@ -6,7 +6,7 @@ from PyQt5.QtGui import QScreen
 import PyQt5.QtGui as QtGui
 from PyQt5.QtWidgets import QPushButton, QColorDialog, QInputDialog
 from design import Ui_MainWindow
-from PIL import Image
+# from Pillow import Image
 
 
 class MyWidget(QMainWindow, Ui_MainWindow):
@@ -28,7 +28,7 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.white_c.setStyleSheet("background-color: rgb(255, 255, 255)")
         self.yellow_c.setStyleSheet("background-color: rgb(255, 255, 0)")
 
-        self.brash.activated[str].connect(self.onActivated)
+        self.brash.activated[str].connect(self.change_brash)
         self.grab_btn.clicked.connect(self.save_image)
         self.clean.clicked.connect(self.clean_im)
         self.black_c.clicked.connect(self.run)
@@ -39,9 +39,9 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.grey_c.clicked.connect(self.run)
         self.white_c.clicked.connect(self.run)
         self.yellow_c.clicked.connect(self.run)
-        self.collor_settings.clicked.connect(self.run1)
+        self.collor_settings.clicked.connect(self.custom_color)
 
-    def onActivated(self, text):
+    def change_brash(self, text):
         self.my_brash = int(text)
 
     def paintEvent(self, event):
@@ -65,7 +65,7 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         self.coords = []
         self.update()
 
-    def run1(self):
+    def custom_color(self):
         color = QColorDialog.getColor()
         if color.isValid():
             self.left_color.setStyleSheet(
@@ -75,7 +75,7 @@ class MyWidget(QMainWindow, Ui_MainWindow):
 
     def save_image(self):
         i, okBtnPressed = QInputDialog.getText(
-            self, "Введите имя файла", "Формат - .jpg?"
+            self, "Введите имя файла", "Формат - .jpg"
         )
         if len(i) > 4 and i[-4:] == '.jpg':
             screen = QApplication.primaryScreen()
@@ -91,14 +91,14 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         y = event.y()
         if y > 80:
             self.coords.append((x, y, self.color, self.my_brash))
-        self.update()
+        ex.update()
 
     def mousePressEvent(self, event):
         x = event.x()
         y = event.y()
         if y > 80:
             self.coords.append((x, y, self.color, self.my_brash))
-        self.update()
+        ex.update()
 
 
 app = QApplication(sys.argv)
